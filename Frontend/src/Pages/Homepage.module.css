@@ -1,0 +1,35 @@
+/* carousal css */
+.carousel-transition-enter {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  .carousel-transition-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 500ms, transform 500ms;
+  }
+  
+  .carousel-transition-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .carousel-transition-exit-active {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 500ms, transform 500ms;
+  }
+  
+  .carousel-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Adjust to desired height */
+  }
+  
+  .carousel-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  /* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */

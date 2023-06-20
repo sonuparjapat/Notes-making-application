@@ -1,15 +1,29 @@
 import { Image } from '@chakra-ui/react'
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Homepage from '../Pages/Homepage'
+import Navbar from '../Components/Navbar'
+import SignInSide from '../Pages/Authentication/SignIn'
+import SignUp from '../Pages/Authentication/Signup'
+import AboutUs from '../Pages/AboutUs/AboutUs'
 
 export default function ALLRoutes() {
   return (
-    <React.Fragment>
 
-<Box>
-    <Image src="https://hips.hearstapps.com/hmg-prod/images/edc100122couturier-001-1662565312.jpg?crop=1.00xw:0.648xh;0,0.325xh&resize=1200:*"/>
-</Box>
+<>
+<Navbar/>
+<Routes>
+
+  <Route path="/" element={<Homepage/>}></Route>
+  <Route path="/login" element={<SignInSide/>}></Route>
+  <Route path="/signup" element={<SignUp/>}></Route>
+  <Route path="/HOME" element={<Homepage/>}></Route>
+  <Route path="/ABOUTUS" element={<AboutUs/>}></Route>
+</Routes>
+
+</>
 
 
-    </React.Fragment>
+
   )
 }

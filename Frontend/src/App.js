@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 
-import 'bootstrap/dist/css/bootstrap.css';
+
 import Container from "bootstrap"
 import Navbar from './Components/Navbar';
+import ALLRoutes from './ALLRoutes/ALLRoutes';
 function App() {
   return (
-   <Navbar/>
+<ALLRoutes/>
   );
 }
 

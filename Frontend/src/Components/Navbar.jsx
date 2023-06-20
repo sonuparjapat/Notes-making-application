@@ -21,7 +21,7 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-const Links = ['HOMETOURS', 'DESIGNS', 'ABOUTUS',"CONTACTUS"];
+const Links = ['HOME', 'LOGIN', 'ABOUTUS',"CONTACTUS"];
 
 const NavLink = ({ children }) => (
   <Link
@@ -89,8 +89,8 @@ export default function Navbar() {
           
               </MenuButton>
               <MenuList color="black" bg="black">
-                <MenuItem fontFamily={Navbarstyle.fontFamily} fontWeight={Navbarstyle.fontWeight} fontSize={Navbarstyle.fontSize} lineHeight={Navbarstyle.lineHeight}>SignIN</MenuItem>
-         
+                <Link to="/login"><MenuItem fontFamily={Navbarstyle.fontFamily} fontWeight={Navbarstyle.fontWeight} fontSize={Navbarstyle.fontSize} to="/login" lineHeight={Navbarstyle.lineHeight}>SignIN</MenuItem>
+                </Link>
               </MenuList>
             </Menu>
           </Flex>
