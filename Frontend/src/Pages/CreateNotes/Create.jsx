@@ -69,7 +69,7 @@ sx={{
     margin="normal"
     sx={{
         '& .MuiInputBase-input': {
-          color: 'white', // Set the desired text color here
+          color: 'black', // Set the desired text color here
         }
        
       }}
