@@ -6,6 +6,8 @@ import Navbar from '../Components/Navbar'
 import SignInSide from '../Pages/Authentication/SignIn'
 import SignUp from '../Pages/Authentication/Signup'
 import AboutUs from '../Pages/AboutUs/AboutUs'
+import Yournotes from '../Pages/YourNotes/Yournotes'
+import Create from '../Pages/CreateNotes/Create'
 
 export default function ALLRoutes() {
   return (
@@ -19,6 +21,9 @@ export default function ALLRoutes() {
   <Route path="/signup" element={<SignUp/>}></Route>
   <Route path="/HOME" element={<Homepage/>}></Route>
   <Route path="/ABOUTUS" element={<AboutUs/>}></Route>
+  <Route path="/CREATE" element={<Create/>}></Route>
+  <Route path="/NOTES" element={<Yournotes/>}></Route>
+  <Route path="*" element={<AboutUs/>}></Route>
 </Routes>
 
 </>

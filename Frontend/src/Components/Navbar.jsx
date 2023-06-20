@@ -21,7 +21,7 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-const Links = ['HOME', 'LOGIN', 'ABOUTUS',"CONTACTUS"];
+const Links = ['HOME', 'LOGIN',"NOTES","CREATE", 'ABOUTUS',"CONTACTUS"];
 
 const NavLink = ({ children }) => (
   <Link
