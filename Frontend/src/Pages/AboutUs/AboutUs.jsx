@@ -18,8 +18,8 @@ export default function AboutUs() {
         <Box width="90%" margin="auto">
         <Box>
 <Box w={["100%","100%","70%","65%","65%"]}  margin="left" >
-<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={"flex"} justifyContent={"space-around"} gap="20px" >
-<Image borderRadius={"10%"} w={["100%","100%","70%","65%","65%"]}  src={welcome}/>
+<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={["block","block","bblock","flex","flex"]} justifyContent={"space-around"} gap="20px" >
+<Image borderRadius={"10%"} w={["100%","100%","100%","45%","45%"]}  src={welcome}/>
 <Text color="red.400" textAlign={"center"} fontFamily={about.fontFamily} mt="50px"><Text display={"block"}>Welcome to our Notes Making Application!</Text>
 At "My Notes", we are dedicated to providing you with a powerful and user-friendly platform to create and manage your notes effectively. Our application is designed to simplify the process of capturing and organizing your thoughts, ideas, and important information, allowing you to stay organized and productive.</Text>
 </Box>
@@ -27,15 +27,15 @@ At "My Notes", we are dedicated to providing you with a powerful and user-friend
 
 </Box>
 <Box w={["100%","100%","70%","65%","65%"]} margin="auto" marginTop={"100px"} >
-<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={"flex"} justifyContent={"space-around"} gap="20px" >
-<Image borderRadius={"10%"} w={["100%","100%","70%","65%","65%"]}  src={mission} alt='mission'/>
+<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={["block","block","block","flex","flex"]} justifyContent={"space-around"} gap="20px" >
+<Image borderRadius={"10%"} w={["100%","100%","100%","65%","65%"]}  src={mission} alt='mission'/>
 <Text color="green.400" textAlign={"center"} fontFamily={about.fontFamily} mt="50px"><Text display={"block"}>Our Mission:</Text>
 
 Our mission is to empower individuals like you to take control of their note-taking process. We believe that well-organized and easily accessible notes are key to unlocking creativity, improving productivity, and fostering personal and professional growth. With our application, we aim to make note-taking effortless and enjoyable, giving you the tools you need to succeed.</Text>
 </Box></Box>
 <Box w={["100%","100%","70%","65%","65%"]}   margin="left" marginTop={"100px"} >
-<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={"flex"} justifyContent={"space-around"} gap="20px" >
-<Image borderRadius={"10%"} w={["100%","100%","70%","65%","65%"]}  src={key} alt='mission'/>
+<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={["block","block","block","flex","flex"]}justifyContent={"space-around"} gap="20px" >
+<Image borderRadius={"10%"} w={["100%","100%","100%","65%","65%"]}  src={key} alt='mission'/>
 <Text color="purple.400" textAlign={"center"} fontFamily={about.fontFamily} mt="50px"><Text display={"block"}>Key Features:</Text>
 <ul>
     <li style={{textAlign:"left"}}>
@@ -59,8 +59,8 @@ Our mission is to empower individuals like you to take control of their note-tak
 </Text>
 </Box></Box>
 <Box  w={["100%","100%","70%","65%","65%"]}  margin="auto" marginTop={"100px"} >
-<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={["block","block","flex","flex","flex"]} justifyContent={"space-around"} gap="20px" >
-<Image borderRadius={"10%"} w={["100%","100%","70%","65%","65%"]}  src={joinus} alt='mission'/>
+<Box borderRadius={"10%"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} display={["block","block","block","flex","flex"]} justifyContent={"space-around"} gap="20px" >
+<Image borderRadius={"10%"} w={["100%","100%","100%","65%","65%"]}  src={joinus} alt='mission'/>
 <Text color="pink.400" textAlign={"center"} fontFamily={about.fontFamily} mt="50px"><Text display={"block"}>Join Us:</Text>
 
 
@@ -73,6 +73,6 @@ Thank you for choosing "My Notes" as your trusted notes making application. We a
 
         </Box>
         
-        AboutUs</Box>
+       </Box>
   )
 }
