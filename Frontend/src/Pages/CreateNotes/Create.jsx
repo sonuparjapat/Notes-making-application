@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@chakra-ui/react'
+import { Box, Input, Textarea } from '@chakra-ui/react'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { LinkBox } from '@chakra-ui/react';
 import image1 from "../Images/1.jpg"
+import { CreateRounded } from '@mui/icons-material';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -58,7 +59,7 @@ sx={{
 >
     <Box marginTop={"100px"} >
 <Avatar  sx={{ m: 1, bgcolor: 'secondary.main' }}>
-  <LockOutlinedIcon />
+  <CreateRounded />
 </Avatar>
 </Box>
 <Box color="white" width="40%" margin={"auto"}   component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -81,40 +82,25 @@ sx={{
     id="task"
     // autoComplete="current-password"
   />
-  <TextField
- sx={{
-    '& .MuiInputBase-input': {
-      color: 'white', // Set the desired text color here
-    }
- 
-  }}
-    margin="normal"
-    required
-    fullWidth
-    id="email"
-    label="Email Address"
-    name="email"
-    autoComplete="email"
-  focused
-  />
+ <Textarea label="description" height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
   <TextField
   onChange={handlechange}
     focused
     margin="normal"
     sx={{
         '& .MuiInputBase-input': {
-          color: 'white', // Set the desired text color here
+          color: 'black', // Set the desired text color here
         }
        
       }}
     required
     fullWidth
     color="success"
-    name="password"
-    label="Password"
-    type="password"
-    id="password"
-    autoComplete="current-password"
+    name="date"
+    label="Date"
+    type="date"
+    id="date"
+ 
   />
   
  
