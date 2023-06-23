@@ -67,7 +67,8 @@ const {isLoading,isError}=data
  const {email,passwoord}=signindata
 dispatch(usersignin(signindata)).then((res)=>{
   dispatch(usersignsuccess(res.data))
-  // sessionStorage.setItem("usertoken",res.data.token)
+
+  sessionStorage.setItem("usertoken",res.data.token)
 
   toast({description:"Login Successfully",position:'top',"status":"success",duration:1000})
   navigate(location.state,{replace:true})

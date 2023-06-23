@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Input, Textarea } from '@chakra-ui/react'
+import { Box, Input, Textarea, useToast } from '@chakra-ui/react'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -18,6 +18,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LinkBox } from '@chakra-ui/react';
 import image1 from "../Images/1.jpg"
 import { CreateRounded } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useraddtask, useraddtaskfailure, useraddtasksuccess } from '../../Redux/UserAddtask/Action';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -44,9 +46,20 @@ const initialdata={
 }
 export default function Create() {
   const [createtask,setCreateTask]=React.useState(initialdata)
-
+const dispatch=useDispatch()
+const data=useSelector((state)=>state.useraddtaskreducer)
+const {isLoading}=data
+const toast=useToast()
     const handleSubmit=(e)=>{
 e.preventDefault()
+
+dispatch(useraddtask(createtask)).then((res)=>{
+  dispatch(useraddtasksuccess())
+toast({description:"Task Added Successfully","position":'top',"status":"success",duration:3000})
+}).catch((err)=>{
+  dispatch(useraddtaskfailure())
+  toast({description:"!!some problem to add task","position":'top',"status":"error",duration:3000})
+})
 
     }
     const handlechange=(e)=>{
@@ -92,7 +105,7 @@ sx={{
     id="task"
     // autoComplete="current-password"
   />
- <Textarea label="description" height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
+ <Textarea label="description" name="description" onChange={handlechange} height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
   <TextField
   onChange={handlechange}
     focused
@@ -112,7 +125,25 @@ sx={{
     id="date"
  
   />
-  
+   {isLoading?
+   
+   <Button
+
+    fullWidth
+    variant="contained"
+    sx={{ mt: 3, mb: 2 }}
+  >
+<div className="spinner-grow text-primary" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+<div className="spinner-grow text-secondary" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+<div className="spinner-grow text-success" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+
+  </Button>:
  
   <Button
     type="submit"
@@ -121,7 +152,7 @@ sx={{
     sx={{ mt: 3, mb: 2 }}
   >
   Submit
-  </Button>
+  </Button>}
   </form>
   <Copyright sx={{ mt: 5 }} />
 </Box>
