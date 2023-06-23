@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Input, Textarea } from '@chakra-ui/react'
+import { Box, Input, Spinner, Textarea, useToast } from '@chakra-ui/react'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
-
+import emailjs from '@emailjs/browser';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -17,7 +17,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { LinkBox } from '@chakra-ui/react';
 import image1 from "../Images/1.jpg"
-import { CreateRounded } from '@mui/icons-material';
+import { CreateRounded, Label, Message, QueryBuilder, QueryStatsOutlined } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
+import Wrapper from './Wrapper';
+import { contactfailure, contactsuccess, usercontact } from '../../Redux/ContactSection/Action';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -38,23 +41,42 @@ const createnotes={
     "borderradius":""
 }
 const initialdata={
-  task:"",
-  "description":"",
-  date:""
+  name:"",
+  "email":"",
+  "message":""
 }
-export default function Create() {
-  const [createtask,setCreateTask]=React.useState(initialdata)
+export default function ContactUs() {
+  const [messg,setMessg]=React.useState(initialdata)
 
+  const userdata=useSelector((state)=>state.usersigninreducer)
+  const {username,useremail}=userdata
+  React.useEffect(()=>{
+setMessg((pre)=>({...pre,name:username,email:useremail}))
+
+  },[])
+  const contactdata=useSelector((state)=>state.contactreducer)
+  const {isLoading,isError}=contactdata
+  const toast=useToast()
+  const dispatch=useDispatch()
+  const form = React.useRef()
     const handleSubmit=(e)=>{
 e.preventDefault()
-
+dispatch(usercontact(messg)).then((res)=>{
+  dispatch(contactsuccess())
+toast({description:"Message sent successfully","position":"top","status":"success",duration:3000})
+setMessg(initialdata)
+}).catch((err)=>{
+  dispatch(contactfailure())
+  toast({description:"!!Message not sent","position":"top","status":"error",duration:3000})
+})
     }
     const handlechange=(e)=>{
 const {name,value}=e.target
-setCreateTask((pre)=>({...pre,[name]:value}))
+setMessg((pre)=>({...pre,[name]:value}))
     }
   return (
-    <Box bgColor="blue.50" height="800px" >
+    <Box bgColor="blue.50"  >
+    <Wrapper/>
            <ThemeProvider theme={defaultTheme} >
  <Box
 
@@ -68,12 +90,13 @@ sx={{
 >
     <Box marginTop={"100px"} >
 <Avatar  sx={{ m: 1, bgcolor: 'secondary.main' }}>
-  <CreateRounded />
+  <Message />
 </Avatar>
 </Box>
 <Box color="white" width="40%" margin={"auto"}   component="form" noValidate  sx={{ mt: 1 }}>
-  <form onSubmit={handleSubmit}>
+  <form ref={form}  onSubmit={handleSubmit}>
 <TextField
+ value={messg.name}
   onChange={handlechange}
     focused
     margin="normal"
@@ -86,14 +109,15 @@ sx={{
     required
     fullWidth
     color="success"
-    name="task"
-    label="Task Name"
+    name="name"
+    label="Name"
     type="text"
-    id="task"
+    id="name"
     // autoComplete="current-password"
   />
- <Textarea label="description" height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
+<Textarea value={messg.message}  height={"100px"}  placeholder="what you want to ask ..." textAlign={"center"} w="100%" autoFocus color="black"  onChange={handlechange} name="message" border="2px solid red"/>
   <TextField
+ 
   onChange={handlechange}
     focused
     margin="normal"
@@ -104,16 +128,30 @@ sx={{
        
       }}
     required
+   value={messg.email}
     fullWidth
     color="success"
-    name="date"
-    label="Date"
-    type="date"
-    id="date"
+    name="email"
+    label="Email"
+    type="email"
+    id="email"
  
   />
   
- 
+ {isLoading?
+  <Button
+
+  fullWidth
+  variant="contained"
+  sx={{ mt: 3, mb: 2 }}
+>
+<div className="spinner-border spinner-border-sm" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+<div className="spinner-grow spinner-grow-sm" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+</Button>:
   <Button
     type="submit"
     fullWidth
@@ -121,7 +159,7 @@ sx={{
     sx={{ mt: 3, mb: 2 }}
   >
   Submit
-  </Button>
+  </Button>}
   </form>
   <Copyright sx={{ mt: 5 }} />
 </Box>

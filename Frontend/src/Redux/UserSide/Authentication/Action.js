@@ -13,10 +13,10 @@ export const signupfailure=()=>{
 }
 
 
-export const usersignup=(obj)=>(dispatch)=>{
+export const usersignup=(obj)=>async(dispatch)=>{
     dispatch(signuprequest())
 
-    return axios.post("https://notesmaking.onrender.com/user/register",obj)
+  return await axios.post("https://notesmaking.onrender.com/user/register",obj)
 
 
 }

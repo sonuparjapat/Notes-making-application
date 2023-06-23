@@ -169,8 +169,8 @@ sx={{
     variant="contained"
     sx={{ mt: 3, mb: 2 }}
   >
-<div class="spinner-border text-dark" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div className="spinner-border text-dark" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div>
   </Button>:
   <Button

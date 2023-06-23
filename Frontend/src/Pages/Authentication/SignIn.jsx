@@ -5,9 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
-import { Box } from '@chakra-ui/react';
+import { Box, useToast } from '@chakra-ui/react';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { LinkBox } from '@chakra-ui/react';
 import image1 from "../Images/1.jpg"
+import { useDispatch, useSelector } from 'react-redux';
+import { usersignin, usersignsuccess } from '../../Redux/UserSide/Authentication/UserLogin/Action';
+import { usersinginsucc } from '../../Redux/UserSide/Authentication/UserLogin/ActionTypes';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -31,16 +34,48 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
-
+const initialdata={
+  "email":"",
+  "password":""
+}
 export default function SignInSide() {
+  const [signindata,setSignindata]=React.useState(initialdata)
+const handlechange=(e)=>{
+  const {name,value}=e.target
+  setSignindata((pre)=>({...pre,[name]:value}))
+}
+const dispatch=useDispatch()
+const data=useSelector((state)=>state.usersigninreducer)
+const toast=useToast()
+const navigate=useNavigate()
+const location=useLocation()
+const {isLoading,isError}=data
+
+
+// Usage example: Set an HTTP-only cookie that expires in 30 minutes
+
+
+// Usage example: Set a cookie with a value that expires in 30 minutes
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+ const {email,passwoord}=signindata
+dispatch(usersignin(signindata)).then((res)=>{
+  dispatch(usersignsuccess(res.data))
+  // sessionStorage.setItem("usertoken",res.data.token)
+
+  toast({description:"Login Successfully",position:'top',"status":"success",duration:1000})
+  navigate(location.state,{replace:true})
+
+}).catch((err)=>{
+
+  toast({description:err.response.data.msg,status:"error",position:"top","duration":1000})
+})
   };
 
   return (
@@ -72,7 +107,8 @@ sx={{
   <LockOutlinedIcon />
 </Avatar>
 </Box>
-<Box color="white"   position={"absolute"}  top="20%" paddingTop={"100px"} component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+<Box color="white"   position={"absolute"}  top="20%" paddingTop={"100px"} component="form" noValidate  sx={{ mt: 1 }}>
+<form onSubmit={handleSubmit}>
   <TextField
  sx={{
     '& .MuiInputBase-input': {
@@ -88,6 +124,8 @@ sx={{
     name="email"
     autoComplete="email"
   focused
+
+  onChange={handlechange}
   />
   <TextField
     focused
@@ -98,6 +136,7 @@ sx={{
         }
        
       }}
+      onChange={handlechange}
     required
     fullWidth
     color="success"
@@ -107,7 +146,25 @@ sx={{
     id="password"
     autoComplete="current-password"
   />
- 
+ {isLoading?
+  <Button
+
+  fullWidth
+  variant="contained"
+  sx={{ mt: 3, mb: 2 }}
+>
+
+
+<div className="spinner-grow text-primary" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+<div className="spinner-grow text-secondary" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div>
+<div className="spinner-grow text-success" role="status">
+  <span className="visually-hidden">Loading...</span>
+</div></Button>:
+
   <Button
     type="submit"
     fullWidth
@@ -115,7 +172,8 @@ sx={{
     sx={{ mt: 3, mb: 2 }}
   >
     Sign In
-  </Button>
+  </Button>}
+</form>
   <Grid container>
   
     <Grid item>
