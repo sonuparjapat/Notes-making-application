@@ -16,7 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LinkBox } from '@chakra-ui/react';
 import image1 from "../Images/1.jpg"
 import { useDispatch, useSelector } from 'react-redux';
-import { usersignin, usersignsuccess } from '../../Redux/UserSide/Authentication/UserLogin/Action';
+import { usersignin, usersigninfailure, usersignsuccess } from '../../Redux/UserSide/Authentication/UserLogin/Action';
 import { usersinginsucc } from '../../Redux/UserSide/Authentication/UserLogin/ActionTypes';
 function Copyright(props) {
   return (
@@ -74,7 +74,7 @@ dispatch(usersignin(signindata)).then((res)=>{
   navigate(location.state,{replace:true})
 
 }).catch((err)=>{
-
+dispatch(usersigninfailure())
   toast({description:err.response.data.msg,status:"error",position:"top","duration":1000})
 })
   };
@@ -113,10 +113,20 @@ sx={{
   <TextField
  sx={{
     '& .MuiInputBase-input': {
-      color: 'white', // Set the desired text color here
+      color: 'red', // Set the desired text color here
     }
  
   }}
+
+
+  inputProps={{
+    style:{
+      fontWeight:"bold"
+    }
+  }
+  
+  }
+ 
     margin="normal"
     required
     fullWidth
@@ -132,11 +142,21 @@ sx={{
     focused
     margin="normal"
     sx={{
-        '& .MuiInputBase-input': {
-          color: 'white', // Set the desired text color here
-        }
-       
-      }}
+      '& .MuiInputBase-input': {
+        color: 'red', // Set the desired text color here
+      }
+   
+    }}
+  
+  
+    inputProps={{
+      style:{
+        fontWeight:"bold"
+      }
+    }
+    
+    }
+    
       onChange={handlechange}
     required
     fullWidth

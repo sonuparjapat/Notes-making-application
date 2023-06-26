@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import {
   Box,
   Flex,
@@ -20,6 +21,8 @@ import {
 
 import { Link, useLocation } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { useSelector } from 'react-redux';
+import { LoginRounded } from '@mui/icons-material';
 
 const Links = ['HOME', 'LOGIN',"NOTES","CREATE", 'ABOUTUS',"CONTACTUS"];
 
@@ -47,7 +50,9 @@ const Navbarstyle={
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location=useLocation()
-
+  const data=useSelector((state)=>state.usersigninreducer)
+  const {profileImage}=data
+console.log(profileImage)
   return (
     <>
       <Box position={"sticky"} top="0" zIndex={"overlay"} bg={useColorModeValue('black', 'gray.900')} color={"white"} px={4}><Box width="80%" margin="auto">
@@ -80,13 +85,7 @@ export default function Navbar() {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-          
+                <LoginRounded/>
               </MenuButton>
               <MenuList color="black" bg="black">
                 <Link to="/login"><MenuItem fontFamily={Navbarstyle.fontFamily} fontWeight={Navbarstyle.fontWeight} fontSize={Navbarstyle.fontSize} to="/login" lineHeight={Navbarstyle.lineHeight}>SignIN</MenuItem>

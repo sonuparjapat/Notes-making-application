@@ -11,6 +11,7 @@ import Create from '../Pages/CreateNotes/Create'
 import PrivateRoute from './PrivateRoute'
 import ContactUs from '../Pages/ContactUs/Contactus'
 import Wrapper from '../Pages/ContactUs/Wrapper'
+import Edit from '../Pages/Edittask/Edit'
 
 export default function ALLRoutes() {
   return (
@@ -25,9 +26,11 @@ export default function ALLRoutes() {
   <Route path="/HOME" element={<Homepage/>}></Route>
   <Route path="/ABOUTUS" element={<AboutUs/>}></Route>
   <Route path="/CREATE" element={<PrivateRoute><Create/></PrivateRoute>}></Route>
-  <Route path="/NOTES" element={<Yournotes/>}></Route>
-  <Route path="/CONTACTUS" element={<ContactUs/>}></Route>
-  <Route path="/w" element={<Wrapper/>}></Route>
+
+  <Route path="/NOTES" element={<PrivateRoute><Yournotes/></PrivateRoute>}></Route>
+  <Route path="/edit/:id" element={<PrivateRoute><Edit/></PrivateRoute>}></Route>
+  <Route path="/CONTACTUS" element={<PrivateRoute><ContactUs/></PrivateRoute>}></Route>
+ 
   <Route path="*" element={<AboutUs/>}></Route>
 </Routes>
 

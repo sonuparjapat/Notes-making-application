@@ -16,7 +16,11 @@ export const signupfailure=()=>{
 export const usersignup=(obj)=>async(dispatch)=>{
     dispatch(signuprequest())
 
-  return await axios.post("https://notesmaking.onrender.com/user/register",obj)
+  return await axios.post("https://notesmaking.onrender.com/register",obj,{
+    headers:{
+        "Content-Type":"multipart/form-data"
+    }
+  })
 
 
 }
