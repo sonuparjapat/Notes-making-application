@@ -20,7 +20,7 @@ import image1 from "../Images/1.jpg"
 import { CreateRounded } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useraddtask, useraddtaskfailure, useraddtasksuccess } from '../../Redux/UserAddtask/Action';
-import { usersingletask } from '../../Redux/UserSingletask/Action';
+import { usersingletask, usersingtaksfailure, usersingtasksuccess } from '../../Redux/UserSingletask/Action';
 import { useredittask, useredittaskfailure, useredittasksuccess } from '../../Redux/EditUsertask/Action';
 function Copyright(props) {
   return (
@@ -49,7 +49,7 @@ const initialdata={
 
 
 export default function Edit() {
-    const [usersingletaskdata,setUsersingletaskdata]=React.useState([])
+    const [usersingletaskdata,setUsersingletaskdata]=React.useState(initialdata)
     const {id}=useParams()
     const dispatch=useDispatch()
     const ourdata=useSelector((state)=>state.usersingletaskreducer)
@@ -57,11 +57,12 @@ export default function Edit() {
 // console.log(data)
     React.useEffect(()=>{
 dispatch(usersingletask(id))
-
+setUsersingletaskdata(data[0])
     },[])
+
 React.useEffect(()=>{
-    setUsersingletaskdata(data[0])
-},[])
+ 
+})
   const [createtask,setCreateTask]=React.useState(initialdata)
 
 
@@ -70,10 +71,11 @@ const toast=useToast()
     const handleSubmit=(e)=>{
 e.preventDefault()
 
-dispatch(useredittask(id,createtask)).then((res)=>{
+dispatch(useredittask(id,usersingletaskdata)).then((res)=>{
   dispatch(useredittasksuccess())
 toast({description:"Task Edited Successfully","position":'top',"status":"success",duration:3000})
-navigate("/NOTES")
+setTimeout(()=>{
+  navigate("/NOTES")},3000)
 }).catch((err)=>{
   dispatch(useredittaskfailure())
   toast({description:"!!some problem to Edit task","position":'top',"status":"error",duration:3000})
@@ -82,7 +84,7 @@ navigate("/NOTES")
     }
     const handlechange=(e)=>{
 const {name,value}=e.target
-setCreateTask((pre)=>({...pre,[name]:value}))
+setUsersingletaskdata((pre)=>({...pre,[name]:value}))
     }
 
     if(isLoading){
@@ -129,7 +131,7 @@ sx={{
 <Box color="white" width="40%" margin={"auto"}   component="form" noValidate  sx={{ mt: 1 }}>
   <form onSubmit={handleSubmit}>
 <TextField
-value={usersingletaskdata.task}
+defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.task}
   onChange={handlechange}
     focused
     margin="normal"
@@ -148,7 +150,7 @@ value={usersingletaskdata.task}
     id="task"
     // autoComplete="current-password"
   />
- <Textarea value={usersingletaskdata.description} label="description" name="description" onChange={handlechange} height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
+ <Textarea defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.description} label="description" name="description" onChange={handlechange} height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
   <TextField
   onChange={handlechange}
     focused
@@ -159,7 +161,7 @@ value={usersingletaskdata.task}
         }
        
       }}
-      value={usersingletaskdata.date}
+     defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.date}
     required
     fullWidth
     color="success"

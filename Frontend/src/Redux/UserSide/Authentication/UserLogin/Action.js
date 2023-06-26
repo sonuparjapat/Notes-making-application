@@ -15,5 +15,5 @@ export const usersigninfailure=()=>{
 
 export const usersignin=(obj)=>(dispatch)=>{
     dispatch(usersigninrequest())
-    return axios.post("https://notesmaking.onrender.com/login",obj)
+    return axios.post("https://notesmaking.onrender.com/user/login",obj)
 }
