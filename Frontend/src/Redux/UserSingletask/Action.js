@@ -13,10 +13,10 @@ export const usersingtaksfailure=()=>{
     return {type:usersingtaskfail}
 }
 
-export const usersingletask=(id)=>(dispatch)=>{
+export const usersingletask=(id)=>async(dispatch)=>{
     dispatch(usersingletaskrequest())
     const token=sessionStorage.getItem("usertoken")
-    axios.get(`https://notesmaking.onrender.com/userpost/${id}`,{
+    await axios.get(`https://notesmaking.onrender.com/userpost/${id}`,{
         headers:{
             "Authorization":`Bearer ${token}`
         }

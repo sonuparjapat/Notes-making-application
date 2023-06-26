@@ -50,9 +50,8 @@ const Navbarstyle={
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location=useLocation()
-  const data=useSelector((state)=>state.usersigninreducer)
-  const {profileImage}=data
-console.log(profileImage)
+  // const data=useSelector((state)=>state.usersigninreducer)
+
   return (
     <>
       <Box position={"sticky"} top="0" zIndex={"overlay"} bg={useColorModeValue('black', 'gray.900')} color={"white"} px={4}><Box width="80%" margin="auto">

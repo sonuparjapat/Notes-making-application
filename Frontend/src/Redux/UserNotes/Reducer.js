@@ -14,7 +14,7 @@ export const reducer=(state=initialdata,action)=>{
             return {...state,isLoading:true,isError:false,usernotes:[]}
         }
         case gettasksucc:{
-            console.log(payload)
+            // console.log(payload)
             return {...state,isLoading:false,isError:false,usernotes:payload}
         }
         case gettaskfail:{

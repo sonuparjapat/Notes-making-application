@@ -10,30 +10,30 @@ const [notes,setNotes]=useState([])
 const data=useSelector((sate)=>sate.usernotesreducer)
 const dispatch=useDispatch()
 const {isLoading,isError,usernotes}=data
-console.log(usernotes)
+// console.log(usernotes)
 useEffect(()=>{
 dispatch(getusertask)
 },[])
 if(isLoading){
   return (
     <Box width="20%" margin="auto">
-    <div class="spinner-grow text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
+    <div className="spinner-grow text-primary" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div>
-<div class="spinner-grow text-secondary" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div className="spinner-grow text-secondary" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div>
-<div class="spinner-grow text-success" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div className="spinner-grow text-success" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div>
-<div class="spinner-grow text-danger" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div className="spinner-grow text-danger" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div>
-<div class="spinner-grow text-warning" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div className="spinner-grow text-warning" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div>
-<div class="spinner-grow text-info" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div className="spinner-grow text-info" role="status">
+  <span className="visually-hidden">Loading...</span>
 </div></Box>
   )
 }
