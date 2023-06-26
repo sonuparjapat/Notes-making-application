@@ -140,7 +140,7 @@ sx={{
 </Box>
 
 <Box color="white" width="40%" margin={"auto"}  position={"absolute"}  top="20%" paddingTop={"100px"} component="form" noValidate  sx={{ mt: 1 }}>
-<form  >
+<form onSubmit={handleSubmit} >
 {/* encType="multipart/form-data" onSubmit={handleSubmit}  accept="image/jpeg, image/jpg, image/png"  this is inside form for multer purpose */}
   {/* <Box w={["45%","25%",'20%',"15%","10%"]} margin="auto" height="50px"  >
 <Box w="80%" margin="auto">
