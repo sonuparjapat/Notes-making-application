@@ -90,7 +90,8 @@ dispatch(usersigninfailure())
         width={"100%"}
         height="600px"
             backgroundSize= 'cover'
-            backgroundPosition= 'center'>
+            backgroundPosition= 'center'
+            >
            </Box>
            <ThemeProvider theme={defaultTheme} >
  <Box
@@ -113,7 +114,7 @@ sx={{
   <TextField
  sx={{
     '& .MuiInputBase-input': {
-      color: 'red', // Set the desired text color here
+      color: 'white', // Set the desired text color here
     }
  
   }}
@@ -143,7 +144,7 @@ sx={{
     margin="normal"
     sx={{
       '& .MuiInputBase-input': {
-        color: 'red', // Set the desired text color here
+        color: 'white', // Set the desired text color here
       }
    
     }}

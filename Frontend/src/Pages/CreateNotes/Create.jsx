@@ -20,6 +20,7 @@ import image1 from "../Images/1.jpg"
 import { CreateRounded } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useraddtask, useraddtaskfailure, useraddtasksuccess } from '../../Redux/UserAddtask/Action';
+import Footer from '../Footer/Footer';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -158,6 +159,7 @@ sx={{
 </Box>
 </Box> 
 </ThemeProvider>  
+<Footer/>
                 </Box>  
 
 

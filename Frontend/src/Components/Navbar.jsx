@@ -66,7 +66,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-           <Link to="/"> <Box _hover={{color:"red",textDecorationLine:"underline"}} textDecorationLine={location.pathname=="/"?"underline":"none"}  fontFamily={Navbarstyle.fontFamily} fontWeight={Navbarstyle.fontWeight} fontSize={Navbarstyle.fontSize} lineHeight={Navbarstyle.lineHeight}>ELITE DECORE</Box></Link>
+           <Link to="/"> <Box _hover={{color:"red",textDecorationLine:"underline"}} textDecorationLine={location.pathname=="/"?"underline":"none"}  fontFamily={Navbarstyle.fontFamily} fontWeight={Navbarstyle.fontWeight} fontSize={"30px"} lineHeight={Navbarstyle.lineHeight}>My Notes</Box></Link>
             <HStack
               as={'nav'}
               spacing={4}

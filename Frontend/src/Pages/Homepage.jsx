@@ -13,6 +13,7 @@ import image6 from "./Images/6.jpg"
 import { Image } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import Footer from './Footer/Footer';
 
 export default function Homepage() {
   const images=[image1,image2,image3,image4,image5,image6]
@@ -46,9 +47,10 @@ export default function Homepage() {
     
     </Carousel>
     <div className="carousel-button-container">
-   <Link to="/login"> <Button bg="green.300" position={"absolute"} top="50%" left={"40%"} right={"40%"} donw="50%">LOGIN</Button></Link>
+   <Link to="/login"> <Button bg="green.300" position={"absolute"} top="40%" left={"40%"} right={"40%"} donw="50%">LOGIN</Button></Link>
 
       </div>
+      <Footer/>
 </div>
   )
 }

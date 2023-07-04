@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useraddtask, useraddtaskfailure, useraddtasksuccess } from '../../Redux/UserAddtask/Action';
 import { usersingletask, usersingtaksfailure, usersingtasksuccess } from '../../Redux/UserSingletask/Action';
 import { useredittask, useredittaskfailure, useredittasksuccess } from '../../Redux/EditUsertask/Action';
+import Footer from '../Footer/Footer';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -55,9 +56,16 @@ export default function Edit() {
     const ourdata=useSelector((state)=>state.usersingletaskreducer)
     const {isLoading,isError,data}=ourdata
 // console.log(data)
+
     React.useEffect(()=>{
-dispatch(usersingletask(id))
-setUsersingletaskdata(data[0])
+dispatch(usersingletask(id)).then((res)=>{
+  dispatch(usersingtasksuccess(res.data.data[0]))
+
+  setUsersingletaskdata((pre)=>({...pre,"task":res.data.data[0].task,"description":res.data.data[0].description,"date":res.data.data[0].date}))
+}).catch((err)=>{
+  dispatch(usersingtaksfailure())
+})
+
     },[])
 
 
@@ -80,6 +88,7 @@ setTimeout(()=>{
 })
 
     }
+    // console.log(usersingletaskdata)
     const handlechange=(e)=>{
 const {name,value}=e.target
 setUsersingletaskdata((pre)=>({...pre,[name]:value}))
@@ -88,23 +97,23 @@ setUsersingletaskdata((pre)=>({...pre,[name]:value}))
     if(isLoading){
         return (
           <Box width="20%" margin="auto">
-          <div class="spinner-grow text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
+          <div className="spinner-grow text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-grow text-secondary" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
-      <div class="spinner-grow text-success" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-grow text-success" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
-      <div class="spinner-grow text-danger" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-grow text-danger" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
-      <div class="spinner-grow text-warning" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-grow text-warning" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div>
-      <div class="spinner-grow text-info" role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div className="spinner-grow text-info" role="status">
+        <span className="visually-hidden">Loading...</span>
       </div></Box>
         )
       }
@@ -129,7 +138,7 @@ sx={{
 <Box color="white" width="40%" margin={"auto"}   component="form" noValidate  sx={{ mt: 1 }}>
   <form onSubmit={handleSubmit}>
 <TextField
-defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.task&&usersingletaskdata.task}
+value={usersingletaskdata.task}
   onChange={handlechange}
     focused
     margin="normal"
@@ -148,7 +157,10 @@ defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.task&&usersin
     id="task"
     // autoComplete="current-password"
   />
- <Textarea defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.description} label="description" name="description" onChange={handlechange} height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
+ <Textarea
+  value={usersingletaskdata.description}
+  
+  label="description" name="description" onChange={handlechange} height={"100px"}  placeholder="description...." textAlign={"center"} w="100%" autoFocus color="black" border="2px solid red"/>
   <TextField
   onChange={handlechange}
     focused
@@ -159,7 +171,7 @@ defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.task&&usersin
         }
        
       }}
-     defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.date}
+    value={usersingletaskdata!=="undefined"&&usersingletaskdata.date}
     required
     fullWidth
     color="success"
@@ -202,6 +214,7 @@ defaultValue={usersingletaskdata!=="undefined"&&usersingletaskdata.task&&usersin
 </Box>
 </Box> 
 </ThemeProvider>  
+<Footer/>
                 </Box>  
 
 

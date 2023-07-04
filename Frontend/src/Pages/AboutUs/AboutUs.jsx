@@ -5,6 +5,7 @@ import key from "../Images/keyfeatures.jpg"
 import GoogleFontLoader from 'react-google-font-loader';
 import welcome from "../Images/welcome.jpg"
 import joinus from "../Images/Joinus.jpg"
+import Footer from '../Footer/Footer';
 const about={
     "fontFamily":"Georgia",
     "boxshadow":"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -72,7 +73,7 @@ Thank you for choosing "My Notes" as your trusted notes making application. We a
 
 
         </Box>
-        
+        <Footer/>
        </Box>
   )
 }

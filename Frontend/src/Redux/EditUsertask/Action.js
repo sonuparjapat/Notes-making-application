@@ -15,13 +15,9 @@ export const useredittaskfailure=()=>{
 export const useredittask=(id,obj)=>async(dispatch)=>{
     dispatch(useredittaskrequest())
     const token=sessionStorage.getItem("usertoken")
-    return await axios.patch(`https://notesmaking.onrender.com/userpost/editpost/${id}`,obj,{
+   return await axios.patch(`https://notesmaking.onrender.com/userpost/editpost/${id}`,obj,{
         headers:{
             "Authorization":`Bearer ${token}`
         }
-    }).then((res)=>{
-        dispatch(useredittasksuccess(res.data.data))
-    }).catch((err)=>{
-        dispatch(useredittaskfailure())
-    }) 
+    })
 }

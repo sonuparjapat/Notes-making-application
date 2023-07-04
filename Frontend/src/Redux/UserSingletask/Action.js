@@ -16,13 +16,9 @@ export const usersingtaksfailure=()=>{
 export const usersingletask=(id)=>async(dispatch)=>{
     dispatch(usersingletaskrequest())
     const token=sessionStorage.getItem("usertoken")
-    await axios.get(`https://notesmaking.onrender.com/userpost/${id}`,{
+   return await axios.get(`https://notesmaking.onrender.com/userpost/${id}`,{
         headers:{
             "Authorization":`Bearer ${token}`
         }
-    }).then((res)=>{
-        dispatch(usersingtasksuccess(res.data.data))
-    }).catch((err)=>{
-        dispatch(usersingtaksfailure())
     })
 }

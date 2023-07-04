@@ -21,6 +21,7 @@ import { CreateRounded, Label, Message, QueryBuilder, QueryStatsOutlined } from 
 import { useDispatch, useSelector } from 'react-redux';
 import Wrapper from './Wrapper';
 import { contactfailure, contactsuccess, usercontact } from '../../Redux/ContactSection/Action';
+import Footer from '../Footer/Footer';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -165,6 +166,7 @@ sx={{
 </Box>
 </Box> 
 </ThemeProvider>  
+<Footer/>
                 </Box>  
 
 
