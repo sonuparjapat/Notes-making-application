@@ -53,7 +53,7 @@ export default function Edit() {
     const [usersingletaskdata,setUsersingletaskdata]=React.useState(initialdata)
     const {id}=useParams()
     const dispatch=useDispatch()
-    const ourdata=useSelector((state)=>state.usersingletaskreducer)
+    const ourdata=useSelector((state)=>state.useredittaskreducer)
     const {isLoading,isError,data}=ourdata
 // console.log(data)
 
@@ -94,29 +94,7 @@ const {name,value}=e.target
 setUsersingletaskdata((pre)=>({...pre,[name]:value}))
     }
 
-    if(isLoading){
-        return (
-          <Box width="20%" margin="auto">
-          <div className="spinner-grow text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-      <div className="spinner-grow text-secondary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-      <div className="spinner-grow text-success" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-      <div className="spinner-grow text-danger" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-      <div className="spinner-grow text-warning" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-      <div className="spinner-grow text-info" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div></Box>
-        )
-      }
+    
   return (
     <Box bgColor="blue.50" height="800px" >
            <ThemeProvider theme={defaultTheme} >

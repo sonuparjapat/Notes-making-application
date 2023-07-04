@@ -1,4 +1,4 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Toast, useToast } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
 import { Delete, Edit } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
@@ -7,12 +7,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import empty from "./Empty/pexels-messala-ciulla-942872.jpg"
 import Footer from '../Footer/Footer'
+import { deletetask } from '../../Redux/Deltetask/Action'
 export default function Yournotes() {
 const [notes,setNotes]=useState([])
 const data=useSelector((sate)=>sate.usernotesreducer)
 const dispatch=useDispatch()
 const {isLoading,isError,usernotes}=data
 // console.log(usernotes)
+let toast=useToast()
+const handledelete=(id)=>{
+
+  dispatch(deletetask(id)).then((res)=>{
+    toast({description:"Task Deleted Successfully",position:"top","status":"success","duration":3000})
+    dispatch(getusertask)
+  }).catch((err)=>{
+    toast({description:"Something wrong to delete task",position:"top","status":"error","duration":3000})
+  })
+}
 useEffect(()=>{
 dispatch(getusertask)
 },[])
@@ -50,7 +61,7 @@ if(isLoading){
            <p className="card-text">{el.description}</p></div>
            <div style={{display:"flex",justifyContent:"space-between"}}>
              <div>
-           <Link to={`/edit/${el._id}`}  className="btn btn-primary"><Edit/></Link></div><div><button type="button" className="btn btn-danger" style={{marginLeft:"5px"}}><Delete/></button></div></div>
+           <Link to={`/edit/${el._id}`}  className="btn btn-primary"><Edit/></Link></div><div><button type="button" className="btn btn-danger" style={{marginLeft:"5px"}} onClick={()=>handledelete(el._id)}><Delete /></button></div></div>
          </div>
        </div>
        
