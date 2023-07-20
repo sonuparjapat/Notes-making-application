@@ -11,16 +11,20 @@ export const getaskfailure=(payload)=>{
 }
 
 
-export const getusertask=(dispatch)=>{
+export const getusertask=(obj)=>(dispatch)=>{
+    // console.log(obj)
     dispatch(gettaskrequest())
     const token=sessionStorage.getItem("usertoken")
 
 axios.get("https://notesmaking.onrender.com/userpost",{
+    params:obj.params,
+   
     headers:{
         "Authorization":`Bearer ${token}`
     }
-}).then((res)=>{
-    dispatch(gettasksuccess(res.data.data))
+},obj).then((res)=>{
+//    console.log(res)
+    dispatch(gettasksuccess(res.data))
 }).catch((errr)=>{
     dispatch(getaskfailure())
 })}

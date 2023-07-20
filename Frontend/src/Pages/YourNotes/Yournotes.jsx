@@ -1,19 +1,35 @@
-import { Box, Button, Toast, useToast } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Input, Select, Toast, useToast } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
 import { Delete, Edit } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { getusertask } from '../../Redux/UserNotes/Action'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import empty from "./Empty/pexels-messala-ciulla-942872.jpg"
 import Footer from '../Footer/Footer'
 import { deletetask } from '../../Redux/Deltetask/Action'
+import FilteringComponent from './FilteringComponent'
+// import { ThemeProvider } from 'styled-components'
+// import { createTheme } from '@mui/material'
+import {Pagination} from '@mui/material'
+import Pagin from './Pagination'
+
+
 export default function Yournotes() {
+  const location=useLocation()
+ const [searchParams,setSearchParmas]=useSearchParams()
+
+const [page,setPage]=useState(searchParams.get("page")||1)
+
+
 const [notes,setNotes]=useState([])
 const data=useSelector((sate)=>sate.usernotesreducer)
 const dispatch=useDispatch()
 const {isLoading,isError,usernotes}=data
 // console.log(usernotes)
+
+
+
 let toast=useToast()
 const handledelete=(id)=>{
 
@@ -24,11 +40,26 @@ const handledelete=(id)=>{
     toast({description:"Something wrong to delete task",position:"top","status":"error","duration":3000})
   })
 }
+
+
 useEffect(()=>{
-dispatch(getusertask)
-},[])
+  let obj={
+    "params":{
+      "sort":searchParams.get('order')&&"date",
+      "order":searchParams.get("order")&&searchParams.get("order"),
+      "task":searchParams.get("task")&&searchParams.get("task"),
+      "page":searchParams.get("page")&&searchParams.get("page"),
+      "limit":5
+   }}
+  
+ 
+dispatch(getusertask(obj))
+
+},[location.search])
+
 if(isLoading){
   return (
+  
     <Box width="20%" margin="auto">
     <div className="spinner-grow text-primary" role="status">
   <span className="visually-hidden">Loading...</span>
@@ -51,15 +82,21 @@ if(isLoading){
   )
 }
   return (
+    // <ThemeProvider theme={theme}>
     <Box bg="blue.50" height={"800px"}>
+    
+    
+
+ 
+        
       {typeof usernotes!=="undefined"&&usernotes.length>=1?usernotes.map((el)=>
          <div className="card" style={{marginTop:"10px"}} key={el._id}>
          <h5 className="card-header">Created on:-{el.date}</h5>
-         <div className="card-body" style={{display:"flex",justifyContent:"space-between"}}>
+         <div className="card-body">
            <div>
            <h5 className="card-title">{el.task}</h5>
            <p className="card-text">{el.description}</p></div>
-           <div style={{display:"flex",justifyContent:"space-between"}}>
+           <div style={{display:"flex",justifyContent:"space-between",marginTop:"20px"}}>
              <div>
            <Link to={`/edit/${el._id}`}  className="btn btn-primary"><Edit/></Link></div><div><button type="button" className="btn btn-danger" style={{marginLeft:"5px"}} onClick={()=>handledelete(el._id)}><Delete /></button></div></div>
          </div>
@@ -80,7 +117,11 @@ if(isLoading){
         </Box>
     
     }
- 
-    </Box>
+{/* {typeof usernotes!=="undefined"&&usernotes.length>=1&& 
+
+<Pagin/>} */}
+
+    </Box> 
+
   )
 }
