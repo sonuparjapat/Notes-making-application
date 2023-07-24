@@ -18,24 +18,34 @@ import Pagin from './Pagination'
 export default function Yournotes() {
   const location=useLocation()
  const [searchParams,setSearchParmas]=useSearchParams()
-
+ const [deleting,setDeleting]=useState(false)
+console.log(deleting)
 const [page,setPage]=useState(searchParams.get("page")||1)
 
-
+// console.log(page)
 const [notes,setNotes]=useState([])
 const data=useSelector((sate)=>sate.usernotesreducer)
 const dispatch=useDispatch()
-const {isLoading,isError,usernotes}=data
+const {isLoading,isError,usernotes,totalpages}=data
+
 // console.log(usernotes)
+// console.log(totalpages)
 
+const handlepag=(e,change)=>{
+  // console.log("hi",change)
+  let obj={
+    "page":Number(change)
+  }
+  setSearchParmas(obj)
 
+}
 
 let toast=useToast()
 const handledelete=(id)=>{
 
   dispatch(deletetask(id)).then((res)=>{
     toast({description:"Task Deleted Successfully",position:"top","status":"success","duration":3000})
-    dispatch(getusertask)
+  setDeleting(!deleting)
   }).catch((err)=>{
     toast({description:"Something wrong to delete task",position:"top","status":"error","duration":3000})
   })
@@ -49,14 +59,20 @@ useEffect(()=>{
       "order":searchParams.get("order")&&searchParams.get("order"),
       "task":searchParams.get("task")&&searchParams.get("task"),
       "page":searchParams.get("page")&&searchParams.get("page"),
-      "limit":5
+      "limit":15
    }}
-  
+setPage(searchParams.get("page"))
+
  
 dispatch(getusertask(obj))
 
-},[location.search])
-
+},[location.search,deleting])
+const buttonStyle = {
+  backgroundColor: '#ff5722', // Replace with your desired color code
+  color: '#fff', // Text color
+};
+// const mypagedata=useSelector((state)=>state.usernotesreducer)
+// const {usernotes,totalpages}=mypagedata
 if(isLoading){
   return (
   
@@ -81,9 +97,10 @@ if(isLoading){
 </div></Box>
   )
 }
+
   return (
     // <ThemeProvider theme={theme}>
-    <Box bg="blue.50" height={"800px"}>
+    <Box bg="blue.50" >
     
     
 
@@ -117,9 +134,25 @@ if(isLoading){
         </Box>
     
     }
-{/* {typeof usernotes!=="undefined"&&usernotes.length>=1&& 
 
-<Pagin/>} */}
+{/* <Pagination count={totalpages}  // Show 1st page and last page
+
+      defaultPage={page} onChange={handlepag}
+      color="primary" 
+      /> */}
+      <Box display={"flex"} justifyContent={"center"} alignContent={"center"}>
+{/* <Pagination count={totalpages}  color="primary" defaultPage={page}  onChange={handlepag}  siblingCount={0} boundaryCount={2} /> */}
+
+
+{/* <Pagination  count={totalpages}
+    // Set this to 1 to show 3 buttons (1 start + 1 end + 1 current)
+        showFirstButton={3}
+        showLastButton={3}
+        defaultPage={page}
+         onChange={handlepag}/> */}
+{typeof usernotes!=="undefined"&&usernotes.length>=1&& 
+
+<Pagin handlepag={handlepag} totalpages={totalpages} page={page}/>}</Box>
 
     </Box> 
 

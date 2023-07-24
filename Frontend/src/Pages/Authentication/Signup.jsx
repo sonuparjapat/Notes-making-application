@@ -17,6 +17,7 @@ import { LinkBox } from '@chakra-ui/react';
 import image1 from "../Images/1.jpg"
 import { useDispatch, useSelector } from 'react-redux';
 import { signupfailure, signupsucess, usersignup } from '../../Redux/UserSide/Authentication/Action';
+import Footer from '../Footer/Footer';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -133,13 +134,13 @@ sx={{
   alignItems: 'center',
 }}
 >
-    <Box marginTop={"100px"} position="absolute"  top="10%">
+    <Box marginTop={"60px"} position="absolute"  top="10%">
 <Avatar  sx={{ m: 1, bgcolor: 'secondary.main' }}>
   <LockOutlinedIcon />
 </Avatar>
 </Box>
 
-<Box color="white" width="40%" margin={"auto"}  position={"absolute"}  top="20%" paddingTop={"100px"} component="form" noValidate  sx={{ mt: 1 }}>
+<Box color="white" width={["80%","80%","40%","40%","40%"]} margin={"auto"}  position={"absolute"}  top="20%" paddingTop={"50px"} component="form" noValidate  sx={{ mt: 1 }}>
 <form onSubmit={handleSubmit} >
 {/* encType="multipart/form-data" onSubmit={handleSubmit}  accept="image/jpeg, image/jpg, image/png"  this is inside form for multer purpose */}
   {/* <Box w={["45%","25%",'20%',"15%","10%"]} margin="auto" height="50px"  >
@@ -236,7 +237,7 @@ sx={{
 </Box> 
 </ThemeProvider>  
                 </Box>
-
+<Footer/>
        </>
   );
 }

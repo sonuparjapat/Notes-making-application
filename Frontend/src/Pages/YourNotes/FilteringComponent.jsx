@@ -13,7 +13,7 @@ export default function FilteringComponent() {
 
 let sortvalue=searchParams.get("date")
     const [sort,setSort]=useState(sortvalue||"")
-    const [page,setPage]=useState(searchParams.get("page")||7)
+    const [page,setPage]=useState(searchParams.get("page")||1)
       const [searchvalue,setSearchvalue]=useState(searchParams.get("search")||"")
 const data=useSelector((state)=>state.usernotesreducer)
 const {usernotes,totalpages}=data
@@ -35,9 +35,10 @@ debounce(e.target.value)
 //  debouncecall
 setSearchvalue(e)
  }
- 
+//  console.log(page)
  const debounce=useDebounce(handlesearch,1000)
  const handlepag=(e,value)=>{
+  console.log(value)
 setPage(value)
  }
   return (
@@ -56,18 +57,15 @@ setPage(value)
         <Box><Input placeholder="search your task" onChange={handlechange}
         /></Box>
         </Box> 
-        {typeof usernotes!=="undefined"&&usernotes.length>5&&
+        {/* {typeof usernotes!=="undefined"&&
         <Box mt="20px" w="100%" marginBottom="100px"  display={"flex"} justifyContent={"center"} alignItems={"center"}>
 
-<Pagination  count={totalpages}
- // Set this to 1 to show 3 buttons (1 start + 1 end + 1 current)
-     showFirstButton
-     showLastButton onChange={handlepag}/>
-</Box>}
+
+</Box>} */}
+
 <Yournotes/>
 
-
-
     </div>
+    
   )
 }

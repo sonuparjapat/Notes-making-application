@@ -18,6 +18,7 @@ import image1 from "../Images/1.jpg"
 import { useDispatch, useSelector } from 'react-redux';
 import { usersignin, usersigninfailure, usersignsuccess } from '../../Redux/UserSide/Authentication/UserLogin/Action';
 import { usersinginsucc } from '../../Redux/UserSide/Authentication/UserLogin/ActionTypes';
+import Footer from '../Footer/Footer';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -109,8 +110,8 @@ sx={{
   <LockOutlinedIcon />
 </Avatar>
 </Box>
-<Box color="white"   position={"absolute"}  top="20%" paddingTop={"100px"} component="form" noValidate  sx={{ mt: 1 }}>
-<form onSubmit={handleSubmit}>
+<Box color="white" w={["80%","40%","40%","40%","40%"]}  position={"absolute"}  top="20%" paddingTop={"100px"} component="form" noValidate  sx={{ mt: 1 }}>
+<form  onSubmit={handleSubmit}>
   <TextField
  sx={{
     '& .MuiInputBase-input': {
@@ -209,7 +210,7 @@ sx={{
 </Box> 
 </ThemeProvider>  
                 </Box>
-
+<Footer/>
        </>
   );
 }
