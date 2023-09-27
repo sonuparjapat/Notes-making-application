@@ -21,7 +21,7 @@ import {
 
 import { Link, useLocation } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useSelector } from 'react-redux';
+
 import { LoginRounded } from '@mui/icons-material';
 
 const Links = ['HOME', 'LOGIN',"NOTES","CREATE", 'ABOUTUS',"CONTACTUS"];

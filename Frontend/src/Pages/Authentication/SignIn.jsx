@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
-import { Box, useToast } from '@chakra-ui/react';
+import { Box, useToast,Center } from '@chakra-ui/react';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -53,7 +53,16 @@ const location=useLocation()
 const {isLoading,isError}=data
 
 
-// Usage example: Set an HTTP-only cookie that expires in 30 minutes
+// handling background images
+const [imageLoaded, setImageLoaded] = React.useState(false);
+
+React.useEffect(() => {
+  const img = new Image();
+  img.src = "https://source.unsplash.com/random?wallpapers";
+  img.onload = () => {
+    setImageLoaded(true);
+  };
+}, []);
 
 
 // Usage example: Set a cookie with a value that expires in 30 minutes
@@ -79,7 +88,9 @@ dispatch(usersigninfailure())
   toast({description:err.response.data.msg,status:"error",position:"top","duration":1000})
 })
   };
-
+  if (!imageLoaded) {
+    return <Center height="100vh" ><h1>Loading ...</h1></Center>;
+  }
   return (
     <>
    <Box>

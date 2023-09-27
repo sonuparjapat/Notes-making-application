@@ -59,7 +59,7 @@ useEffect(()=>{
       "order":searchParams.get("order")&&searchParams.get("order"),
       "task":searchParams.get("task")&&searchParams.get("task"),
       "page":searchParams.get("page")&&searchParams.get("page"),
-      "limit":15
+      "limit":40
    }}
 setPage(searchParams.get("page"))
 

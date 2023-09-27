@@ -1,20 +1,19 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
-import { Box, Image, useToast } from '@chakra-ui/react';
+
+import { Box, useToast,Center } from '@chakra-ui/react';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { LinkBox } from '@chakra-ui/react';
-import image1 from "../Images/1.jpg"
+
 import { useDispatch, useSelector } from 'react-redux';
 import { signupfailure, signupsucess, usersignup } from '../../Redux/UserSide/Authentication/Action';
 import Footer from '../Footer/Footer';
@@ -46,27 +45,6 @@ export default function SignUp() {
   const toast=useToast()
   const location=useLocation()
   const navigate=useNavigate()
-//   const handleimage=(e)=>{             multer purpose
-//     const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-//     const file = e.target.files[0];
-//     if(allowedFileTypes.includes(file.type)){
-//       setSignupdata({...signupdata,"profileImage":e.target.files[0]})
-   
-//       if (file) {
-//         setProfileImage(file);
-    
-//         // Preview the selected image
-//         const reader = new FileReader();
-//         reader.onload = () => {
-//          setProfileImage(reader.result);
-//         };
-//         reader.readAsDataURL(file);
-//       } }else{
-// toast({description:"This file type is not supported",position:"top","status":"error",duration:3000})
-//     }
-
-
-//   };
   
 
     const handlechange=(e)=>{
@@ -74,12 +52,7 @@ export default function SignUp() {
 setSignupdata((pre)=>({...signupdata,[name]:value}))
 
     }
-  
 
-    // const isvalid=(file)=>{
-    
-    //   if(file.includes())
-    // }
 const dispatch=useDispatch()
 const data=useSelector((state)=>state.usersignupreducer)
 const {isLoading,isError}=data
@@ -109,7 +82,19 @@ const {isLoading,isError}=data
 
 
   };
+  // handling images here (background images)
+  const [imageLoaded, setImageLoaded] = React.useState(false);
 
+React.useEffect(() => {
+  const img = new Image();
+  img.src = "https://source.unsplash.com/random?wallpapers";
+  img.onload = () => {
+    setImageLoaded(true);
+  };
+}, []);
+if (!imageLoaded) {
+  return <Center height="100vh" ><h1>Loading ...</h1></Center>;
+}
   return (
     <>
    <Box>
@@ -142,12 +127,7 @@ sx={{
 
 <Box color="white" width={["80%","80%","40%","40%","40%"]} margin={"auto"}  position={"absolute"}  top="20%" paddingTop={"50px"} component="form" noValidate  sx={{ mt: 1 }}>
 <form onSubmit={handleSubmit} >
-{/* encType="multipart/form-data" onSubmit={handleSubmit}  accept="image/jpeg, image/jpg, image/png"  this is inside form for multer purpose */}
-  {/* <Box w={["45%","25%",'20%',"15%","10%"]} margin="auto" height="50px"  >
-<Box w="80%" margin="auto">
-<Image style={{ borderRadius: '50%', opacity: '3', width: '50px', height: '50px',"position":"absolute"}}  src={profileImage!==null?`${profileImage}`:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOH2aZnIHWjMQj2lQUOWIL2f4Hljgab0ecZQ&usqp=CAU"}/>
-<input required type="file" name="profileImage" onChange={handleimage} style={{ borderRadius: '50%', opacity: '0', width: '50px', height: '500px',"position":"absolute"}} />
-</Box></Box> */}
+
   <TextField
   onChange={handlechange}
     focused

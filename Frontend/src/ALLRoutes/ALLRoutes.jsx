@@ -10,9 +10,10 @@ import Yournotes from '../Pages/YourNotes/Yournotes'
 import Create from '../Pages/CreateNotes/Create'
 import PrivateRoute from './PrivateRoute'
 import ContactUs from '../Pages/ContactUs/Contactus'
-import Wrapper from '../Pages/ContactUs/Wrapper'
+
 import Edit from '../Pages/Edittask/Edit'
 import FilteringComponent from '../Pages/YourNotes/FilteringComponent'
+
 
 export default function ALLRoutes() {
   return (
@@ -31,7 +32,7 @@ export default function ALLRoutes() {
   <Route path="/NOTES" element={<PrivateRoute><FilteringComponent/></PrivateRoute>}></Route>
   <Route path="/edit/:id" element={<PrivateRoute><Edit/></PrivateRoute>}></Route>
   <Route path="/CONTACTUS" element={<PrivateRoute><ContactUs/></PrivateRoute>}></Route>
- 
+ {/* <Route path="/Practice" element={<PrivateRoute><Practice/></PrivateRoute>}></Route> */}
   <Route path="*" element={<AboutUs/>}></Route>
 </Routes>
 

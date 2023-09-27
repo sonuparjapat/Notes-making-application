@@ -8,6 +8,7 @@ import { Toast } from 'bootstrap'
 export default function Pagin({handlepag,totalpages,page}) {
   const totalPagesCount = parseInt(totalpages, 10);
   const currentPage = parseInt(page, 10);
+  // console.log(totalpages,totalPagesCount)
     const [searchParams,setSearchParams]=useSearchParams()
     const [pagevalue,setPagevalue]=useState(searchParams.get("page")||1)
     const data=useSelector((state)=>state.usernotesreducer)
