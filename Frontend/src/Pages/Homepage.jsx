@@ -46,25 +46,25 @@ export default function Homepage() {
   }, [images]);
 
   // Render the carousel only if all images are loaded
-  if(!imagesLoaded){
-    return <Center height="100vh"><h1>Loading...</h1></Center>
-  }
+  // if(!imagesLoaded){
+  //   return <Center height="100vh"><h1>Loading...</h1></Center>
+  // }
   return (
     <div className="carousel-container">
       
-        <Carousel showThumbs={false} showStatus={false} selectedItem={activeIndex}>
+        {/* <Carousel showThumbs={false} showStatus={false} selectedItem={activeIndex}>
           {images.map((image, index) => (
             <CSSTransition
               key={index}
               classNames="carousel-transition"
               timeout={100}
-            >
+            > */}
               <div>
-                <Box w="100%" h="600px" backgroundImage={`url(${image})`} backgroundSize="cover" backgroundPosition="center" />
+                <Box w="100%" h="600px" backgroundImage={`url(${image1})`} backgroundSize="cover" backgroundPosition="center" />
               </div>
-            </CSSTransition>
+            {/* </CSSTransition>
           ))}
-        </Carousel>
+        </Carousel> */}
       
       <div className="carousel-button-container">
         <Link to="/login">
