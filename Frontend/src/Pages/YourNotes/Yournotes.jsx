@@ -1,6 +1,6 @@
 import { Box, Button, Checkbox, Input, Select, Toast, useToast } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
-import { Delete, Edit } from '@mui/icons-material'
+import { Delete, Edit, Favorite, FavoriteBorderOutlined } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { getusertask } from '../../Redux/UserNotes/Action'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,13 +13,18 @@ import FilteringComponent from './FilteringComponent'
 // import { createTheme } from '@mui/material'
 import {Pagination} from '@mui/material'
 import Pagin from './Pagination'
+import { favfailure, favourate, favsuccess } from '../../Redux/favouratesection/Action'
 
+const redStyle = {
+  color: 'red',
+};
 
 export default function Yournotes() {
   const location=useLocation()
  const [searchParams,setSearchParmas]=useSearchParams()
+ const [forany,setForany]=useState(false)
  const [deleting,setDeleting]=useState(false)
-console.log(deleting)
+// console.log(deleting)
 const [page,setPage]=useState(searchParams.get("page")||1)
 
 // console.log(page)
@@ -66,13 +71,28 @@ setPage(searchParams.get("page"))
  
 dispatch(getusertask(obj))
 
-},[location.search,deleting])
+},[location.search,deleting,forany])
 const buttonStyle = {
   backgroundColor: '#ff5722', // Replace with your desired color code
   color: '#fff', // Text color
 };
-// const mypagedata=useSelector((state)=>state.usernotesreducer)
-// const {usernotes,totalpages}=mypagedata
+
+
+// handling favourate
+
+const handlefavourate=(id,favstatus)=>{
+  // console.log(id,favstatus)
+  const obj={"favourate":favstatus}
+  dispatch(favourate(id,obj)).then((res)=>{
+    toast({description:res.data.msg,status:"success",position:"top","duration":2000})
+    setForany(!forany)
+    dispatch(favsuccess())
+  }).catch((err)=>{
+    toast({description:err.response.data.msg,status:"error",position:"top","duration":2000})
+    dispatch(favfailure())
+  })
+}
+
 if(isLoading){
   return (
   
@@ -106,7 +126,9 @@ if(isLoading){
 
  
         
-      {typeof usernotes!=="undefined"&&usernotes.length>=1?usernotes.map((el)=>
+      {typeof usernotes!=="undefined"&&usernotes.length>=1?usernotes.map((el)=>{
+
+     return (
          <div className="card" style={{marginTop:"10px"}} key={el._id}>
          <h5 className="card-header">Created on:-{el.date}</h5>
          <div className="card-body">
@@ -115,11 +137,20 @@ if(isLoading){
            <p className="card-text">{el.description}</p></div>
            <div style={{display:"flex",justifyContent:"space-between",marginTop:"20px"}}>
              <div>
-           <Link to={`/edit/${el._id}`}  className="btn btn-primary"><Edit/></Link></div><div><button type="button" className="btn btn-danger" style={{marginLeft:"5px"}} onClick={()=>handledelete(el._id)}><Delete /></button></div></div>
+           <Link to={`/edit/${el._id}`}  className="btn btn-primary"><Edit/></Link></div>
+
+           <div>
+            {el.favourate?<Favorite onClick={()=>handlefavourate(el._id,el.favourate)} style={redStyle}/>:
+         <FavoriteBorderOutlined onClick={()=>handlefavourate(el._id,el.favourate)}/>}</div>
+           <div><button type="button" className="btn btn-danger" style={{marginLeft:"5px"}} onClick={()=>handledelete(el._id)}><Delete /></button></div>
+
+
+
+           </div> 
          </div>
        </div>
-       
-      ):
+     
+   ) } ):
       <Box
       
    
@@ -135,21 +166,8 @@ if(isLoading){
     
     }
 
-{/* <Pagination count={totalpages}  // Show 1st page and last page
-
-      defaultPage={page} onChange={handlepag}
-      color="primary" 
-      /> */}
       <Box display={"flex"} justifyContent={"center"} alignContent={"center"}>
-{/* <Pagination count={totalpages}  color="primary" defaultPage={page}  onChange={handlepag}  siblingCount={0} boundaryCount={2} /> */}
 
-
-{/* <Pagination  count={totalpages}
-    // Set this to 1 to show 3 buttons (1 start + 1 end + 1 current)
-        showFirstButton={3}
-        showLastButton={3}
-        defaultPage={page}
-         onChange={handlepag}/> */}
 {typeof usernotes!=="undefined"&&usernotes.length>=1&& 
 
 <Pagin handlepag={handlepag} totalpages={totalpages} page={page}/>}</Box>

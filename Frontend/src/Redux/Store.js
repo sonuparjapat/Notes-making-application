@@ -14,6 +14,8 @@ import {reducer as usernotesreducer} from "./UserNotes/Reducer"
 import {reducer as useredittaskreducer} from './EditUsertask/Reducer'
 import {reducer as usersingletaskreducer} from "./UserSingletask/Reducer"
 import {reducer as userdeletetaskreducer} from "./Deltetask/Reducer"
-const rootreducer=combineReducers({usersignupreducer,usersigninreducer,contactreducer,useraddtaskreducer,usernotesreducer,useredittaskreducer,usersingletaskreducer,userdeletetaskreducer})
+import {reducer as favouratereducer} from './favouratesection/Reducer'
+const rootreducer=combineReducers({usersignupreducer,usersigninreducer,contactreducer,useraddtaskreducer,
+    usernotesreducer,useredittaskreducer,usersingletaskreducer,userdeletetaskreducer,favouratereducer})
 
 export const store=legacy_createStore(rootreducer,applyMiddleware(thunk))

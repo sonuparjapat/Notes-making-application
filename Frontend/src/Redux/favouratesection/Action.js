@@ -5,17 +5,18 @@ export const favrequest=()=>{
     return {type:favrequ}
 }
 
-export const favsuccess=(payload)=>{
-    return {type:favsucc,payload}
+export const favsuccess=()=>{
+    return {type:favsucc}
 }
 export const favfailure=()=>{
     return {type:favfail}
 }
 
-export const favouratelist=(obj)=>(dispatch)=>{
+export const favourate=(id,obj)=>(dispatch)=>{
+    console.log()
     const token=sessionStorage.getItem("usertoken")
     dispatch(favrequest())
-    return axios.post("url",obj,{
+    return axios.patch(`https://notesmaking.onrender.com/userpost/addtofavourate/${id}`,obj,{
         headers:{
             "Authorization":`Bearer ${token}`,
     
