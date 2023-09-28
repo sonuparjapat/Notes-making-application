@@ -92,16 +92,16 @@ React.useEffect(() => {
     setImageLoaded(true);
   };
 }, []);
-if (!imageLoaded) {
-  return <Center height="100vh" ><h1>Loading ...</h1></Center>;
-}
+// if (!imageLoaded) {
+//   return <Center height="100vh" ><h1>Loading ...</h1></Center>;
+// }
   return (
     <>
    <Box>
         <Box 
       
         
-        backgroundImage= {("https://source.unsplash.com/random?wallpapers")}
+        backgroundImage= {("https://images.pexels.com/photos/4238524/pexels-photo-4238524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")}
             backgroundRepeat= 'no-repeat'
         width={"100%"}
         height="700px"

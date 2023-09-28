@@ -60,7 +60,7 @@ export default function Homepage() {
               timeout={100}
             > */}
               <div>
-                <Box w="100%" h="600px" backgroundImage={`url(${image1})`} backgroundSize="cover" backgroundPosition="center" />
+                <Box w="100%" h="600px" backgroundImage={`url("https://images.pexels.com/photos/636237/pexels-photo-636237.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")`} backgroundSize="cover" backgroundPosition="center" />
               </div>
             {/* </CSSTransition>
           ))}

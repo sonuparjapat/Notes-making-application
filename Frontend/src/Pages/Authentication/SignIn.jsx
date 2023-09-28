@@ -88,16 +88,16 @@ dispatch(usersigninfailure())
   toast({description:err.response.data.msg,status:"error",position:"top","duration":1000})
 })
   };
-  if (!imageLoaded) {
-    return <Center height="100vh" ><h1>Loading ...</h1></Center>;
-  }
+  // if (!imageLoaded) {
+  //   return <Center height="100vh" ><h1>Loading ...</h1></Center>;
+  // }
   return (
     <>
    <Box>
         <Box 
       
         
-        backgroundImage= {("https://source.unsplash.com/random?wallpapers")}
+        backgroundImage= {("https://images.pexels.com/photos/1766604/pexels-photo-1766604.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")}
             backgroundRepeat= 'no-repeat'
         width={"100%"}
         height="600px"
