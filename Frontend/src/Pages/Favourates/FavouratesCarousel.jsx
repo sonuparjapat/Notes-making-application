@@ -9,7 +9,7 @@ export default function FavourateCarousel() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -38,7 +38,8 @@ export default function FavourateCarousel() {
   return (
     <Flex justifyContent="center">
       <Box
-        width={{ base: '100%', md: '80%', lg: '60%' }}
+      mt="30px"
+        width={{ base: '80%', md: '100%', lg: '100%' }}
         maxWidth="800px"
         borderWidth="1px"
         borderRadius="lg"
@@ -47,13 +48,13 @@ export default function FavourateCarousel() {
       >
         <Slider {...settings}>
           <div>
-            <Image src="image1.jpg" alt="Slide 1" />
+            <Image  w="100%" src="https://images.pexels.com/photos/3457273/pexels-photo-3457273.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 1" />
           </div>
           <div>
-            <Image src="image2.jpg" alt="Slide 2" />
+            <Image  w="100%" src="https://images.pexels.com/photos/904616/pexels-photo-904616.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 2" />
           </div>
           <div>
-            <Image src="image3.jpg" alt="Slide 3" />
+            <Image w="100%" src="https://images.pexels.com/photos/1313809/pexels-photo-1313809.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 3" />
           </div>
         </Slider>
       </Box>
