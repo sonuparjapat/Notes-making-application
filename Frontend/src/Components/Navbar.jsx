@@ -24,7 +24,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 import { LoginRounded } from '@mui/icons-material';
 
-const Links = ['HOME', 'LOGIN',"NOTES","CREATE", 'ABOUTUS',"CONTACTUS"];
+const Links = ['HOME', 'LOGIN',"NOTES","CREATE", 'ABOUTUS',"CONTACTUS","FAVOURATES"];
 
 const NavLink = ({ children }) => (
   <Link

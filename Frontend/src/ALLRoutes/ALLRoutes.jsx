@@ -13,6 +13,7 @@ import ContactUs from '../Pages/ContactUs/Contactus'
 
 import Edit from '../Pages/Edittask/Edit'
 import FilteringComponent from '../Pages/YourNotes/FilteringComponent'
+import FavourateCarousel from '../Pages/Favourates/Favourates'
 
 
 export default function ALLRoutes() {
@@ -32,6 +33,7 @@ export default function ALLRoutes() {
   <Route path="/NOTES" element={<PrivateRoute><FilteringComponent/></PrivateRoute>}></Route>
   <Route path="/edit/:id" element={<PrivateRoute><Edit/></PrivateRoute>}></Route>
   <Route path="/CONTACTUS" element={<PrivateRoute><ContactUs/></PrivateRoute>}></Route>
+  {/* <Route path="/FAVOURATES" element={<PrivateRoute><FavourateCarousel/></PrivateRoute>}></Route> */}
  {/* <Route path="/Practice" element={<PrivateRoute><Practice/></PrivateRoute>}></Route> */}
   <Route path="*" element={<AboutUs/>}></Route>
 </Routes>
