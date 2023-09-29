@@ -13,7 +13,7 @@ export const favfailure=()=>{
 }
 
 export const favourate=(id,obj)=>(dispatch)=>{
-    console.log()
+    // console.log()
     const token=sessionStorage.getItem("usertoken")
     dispatch(favrequest())
     return axios.patch(`https://notesmaking.onrender.com/userpost/addtofavourate/${id}`,obj,{
