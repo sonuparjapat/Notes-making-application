@@ -14,7 +14,7 @@ import FilteringComponent from './FilteringComponent'
 import {Pagination} from '@mui/material'
 import Pagin from './Pagination'
 import { favfailure, favourate, favsuccess } from '../../Redux/favouratesection/Action'
-
+import { Tooltip } from '@chakra-ui/react'
 const redStyle = {
   color: 'red',
 };
@@ -92,11 +92,11 @@ const handlefavourate=(id,favstatus)=>{
     dispatch(favfailure())
   })
 }
-
+const [isHovered, setIsHovered] = useState(false);
 if(isLoading){
   return (
   
-    <Box width="20%" margin="auto">
+    <Box display={"flex"} justifyContent={"center"} alignItems={"center"} width="100%" >
     <div className="spinner-grow text-primary" role="status">
   <span className="visually-hidden">Loading...</span>
 </div>
@@ -133,15 +133,24 @@ if(isLoading){
          <h5 className="card-header">Created on:-{el.date}</h5>
          <div className="card-body">
            <div>
-           <h5 className="card-title">{el.task}</h5>
+        <Box display={"flex"} justifyContent={"space-between"}>
+       <Box> <h5 className="card-title">{el.task}</h5></Box>
+        <Box  onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}  display={"flex"} justifyContent={"center"} alignItems={"center"}>
+          
+          <Tooltip label={el.favourate?"Remove from favourates":"Add to favourates"} >
+          {el.favourate?<Favorite  onClick={()=>handlefavourate(el._id,el.favourate)} style={redStyle}/>:
+         <FavoriteBorderOutlined onClick={()=>handlefavourate(el._id,el.favourate)}/>}
+</Tooltip>
+         
+         </Box>
+          </Box>   
            <p className="card-text">{el.description}</p></div>
            <div style={{display:"flex",justifyContent:"space-between",marginTop:"20px"}}>
              <div>
            <Link to={`/edit/${el._id}`}  className="btn btn-primary"><Edit/></Link></div>
 
-           <div>
-            {el.favourate?<Favorite onClick={()=>handlefavourate(el._id,el.favourate)} style={redStyle}/>:
-         <FavoriteBorderOutlined onClick={()=>handlefavourate(el._id,el.favourate)}/>}</div>
+        
            <div><button type="button" className="btn btn-danger" style={{marginLeft:"5px"}} onClick={()=>handledelete(el._id)}><Delete /></button></div>
 
 
