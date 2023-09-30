@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Input, Select, Toast, useToast } from '@chakra-ui/react'
+import { Box, Button, Center, Checkbox, Input, Select, Toast, useToast } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
 import { Delete, Edit, Favorite, FavoriteBorderOutlined } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
@@ -117,7 +117,11 @@ if(isLoading){
 </div></Box>
   )
 }
-
+else if(isError){
+  return (
+    <Center height="100vh">Something going wrong..</Center>
+  )
+}
   return (
     // <ThemeProvider theme={theme}>
     <Box bg="blue.50" >
