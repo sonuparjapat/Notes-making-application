@@ -15,7 +15,7 @@ export default function FavouratePage() {
   useEffect(()=>{
     dispatch(getfavdata)
   },[foranychange])
-
+// console.log(foranychange)
   // handleremoving from favourates
   const toast=useToast()
   const handleremove=(id,fav)=>{
