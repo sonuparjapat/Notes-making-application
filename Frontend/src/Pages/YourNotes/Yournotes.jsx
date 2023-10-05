@@ -15,6 +15,9 @@ import {Pagination} from '@mui/material'
 import Pagin from './Pagination'
 import { favfailure, favourate, favsuccess } from '../../Redux/favouratesection/Action'
 import { Tooltip } from '@chakra-ui/react'
+
+import { animateScroll as scroll } from 'react-scroll';
+
 const redStyle = {
   color: 'red',
 };
@@ -92,6 +95,10 @@ const handlefavourate=(id,favstatus)=>{
     dispatch(favfailure())
   })
 }
+
+// scroll to down 
+
+
 const [isHovered, setIsHovered] = useState(false);
 if(isLoading){
   return (

@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-import { Box,Input,Select } from '@chakra-ui/react'
+import { Box,Button,Input,Select } from '@chakra-ui/react'
 import { useSearchParams } from 'react-router-dom'
 import Yournotes from './Yournotes'
 import { Pagination } from '@mui/material'
 import { useDebounce } from './Debounce'
 import { useSelector } from 'react-redux'
 import Pagin from './Pagination'
+import { animateScroll as scroll } from 'react-scroll'
 export default function FilteringComponent() {
 
     const [searchParams,setSearchParams]=useSearchParams()
@@ -41,9 +42,20 @@ setSearchvalue(e)
   console.log(value)
 setPage(value)
  }
+
+
+//  scroll process
+
+
+  const scrollToBottom = () => {
+    scroll.scrollToBottom({
+      duration: 1000, // Adjust the duration as needed
+      smooth: 'easeInOutQuint', // You can adjust the scrolling animation
+    });
+  }
   return (
     <div >
-         <Box bg="red.50"  w="60%" margin="auto" display="flex" justifyContent={"space-around"}> 
+         <Box bg="blue.50" w={["90%","90%","80%","80%","80%"]} margin="auto" display="grid" mt="20px" gridTemplateColumns={["repeat(1,1fr)","repeat(1,1fr)","repeat(3,1fr)","repeat(3,1fr)","repeat(3,1fr)"]} gap="10px"> 
         <Box>
       
 <Select value={sort} onChange={(e)=>setSort(e.target.value)}>
@@ -54,8 +66,9 @@ setPage(value)
 
 
         </Box>
-        <Box><Input placeholder="search your task" onChange={handlechange}
+        <Box><Input border="1px solid gray" placeholder="search your task" onChange={handlechange}
         /></Box>
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}><Button onClick={scrollToBottom} bg="green.200" textAlign={"center"}> GO TO BOTTOM</Button></Box>
         </Box> 
         {/* {typeof usernotes!=="undefined"&&
         <Box mt="20px" w="100%" marginBottom="100px"  display={"flex"} justifyContent={"center"} alignItems={"center"}>
